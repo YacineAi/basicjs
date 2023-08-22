@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser");
 const Botly = require("botly");
+const axios = require("axios");
 const botly = new Botly({
 	accessToken: process.env.PAGE_ACCESS_TOKEN,
 	notificationType: Botly.CONST.REGULAR,
@@ -11,8 +11,8 @@ app.get("/", function(_req, res) {
 	res.sendStatus(200);
 });
 /* ----- ESSENTIALS ----- */
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 /* ----- MAGIC ----- */
 app.post('/webhook', (req, res) => {
